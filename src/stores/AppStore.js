@@ -20,7 +20,7 @@ AppStore.load = action(()=>{
 		console.log('取得username:',AppStore.username);
 	}
 
-	AppStore.firebaseRef = firebase.database().ref('/messages');
+	AppStore.firebaseRef = firebase.database().ref('/messages').limitToLast(10);;
 	AppStore.firebaseCallback = AppStore.firebaseRef.on('value', (snap) => {
 		AppStore.isLoading = false;
 		AppStore.messages = snap.val();
