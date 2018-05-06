@@ -28,6 +28,7 @@ class App extends Component {
 			this.TextField.input.value = '';
 		}
 
+
 	}
 	handleEnter = (e) => {
 		if (e.keyCode === 13) {
@@ -42,7 +43,7 @@ class App extends Component {
 			return <Login />
 		}
 		return (
-			<div>
+			<React.Fragment>
 				<AppBar
 					title="秘密聊天室"
 					iconElementRight={<RaisedButton label="登出" onClick={this.handleLogout}/>}
@@ -53,17 +54,17 @@ class App extends Component {
 							let item_class = '', author = '';
 							if(o.author === AppStore.username){
 								item_class = 'my_item';
-								author = '我';
+								author = '';
 							}else{
 								item_class = 'item';
-								author = o.author;
+								author = o.author + '：';
 
 							}
 							return (
 							<div className={item_class} key={key}>
-								<span className="author">{author}</span>：
+								<span className="author">{author}</span>
 								<span className="msg">{o.message}</span>
-								<span className="time">{moment(o.timestamp).format("MM/DD HH:mm")}</span>
+								{/* <span className="time">{moment(o.timestamp).format("MM/DD HH:mm")}</span> */}
 							</div>							
 
 						)
@@ -80,7 +81,7 @@ class App extends Component {
 					/>
 					<RaisedButton label="送出" onClick={this.handleClickSend} />
 				</div>
-			</div>
+			</React.Fragment>
 		);
 	}
 }

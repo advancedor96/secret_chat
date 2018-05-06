@@ -21,7 +21,10 @@ AppStore.load = action(()=>{
 	AppStore.firebaseRef = firebase.database().ref('/messages');
 	AppStore.firebaseCallback = AppStore.firebaseRef.on('value', (snap) => {
 		AppStore.messages = snap.val();
-		console.log('store 發現變化：',AppStore.messages);
+	
+		setTimeout(() => {
+			document.querySelector('.messages').scrollTop = document.querySelector('.messages').scrollHeight - document.querySelector('.messages').clientHeight;
+		}, 300);
 	});
 });
 
