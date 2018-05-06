@@ -11,6 +11,12 @@ import TextField from 'material-ui/TextField';
 import Login from './Login';
 import swal from 'sweetalert';
 import AppBar from 'material-ui/AppBar';
+// const MyLogout = (props) => (
+// 	<IconMenu>
+// 	  <MenuItem primaryText="登出" onClick={this.handleLogout}/>
+// 	</IconMenu>
+//  );
+
 class App extends Component {
 	constructor(props) {
 		super(props);
@@ -46,9 +52,8 @@ class App extends Component {
 			<div>
 				<AppBar
 					title="秘密聊天室"
-					iconClassNameRight="muidocs-icon-navigation-expand-more"
+					iconElementRight={<RaisedButton label="登出" onClick={this.handleLogout}/>}
 				/>
-				<RaisedButton label="登出" onClick={this.handleLogout} style={{display: 'none'}}/>
 				<div className="messages">
 					{/* <div className="item">
 						<span className="author">Toko</span>：
