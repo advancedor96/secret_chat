@@ -1,21 +1,14 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
-// import logo from './logo.svg';
 import AppStore from '../stores/AppStore';
 import moment from 'moment';
 import './App.css';
-// import Database from './Database';
 import _ from 'lodash';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import Login from './Login';
 import swal from 'sweetalert';
 import AppBar from 'material-ui/AppBar';
-// const MyLogout = (props) => (
-// 	<IconMenu>
-// 	  <MenuItem primaryText="登出" onClick={this.handleLogout}/>
-// 	</IconMenu>
-//  );
 
 class App extends Component {
 	constructor(props) {
@@ -55,18 +48,6 @@ class App extends Component {
 					iconElementRight={<RaisedButton label="登出" onClick={this.handleLogout}/>}
 				/>
 				<div className="messages">
-					{/* <div className="item">
-						<span className="author">Toko</span>：
-						<span className="msg">我是toko</span>
-					</div>
-					<div className="item">
-						<span className="author">Toko</span>：
-						<span className="msg">我是toko 2</span>
-					</div>
-					<div className="my_item">
-						<span className="author">我</span>：
-						<span className="msg">他的的</span>
-					</div> */}
 					{
 						_.map(AppStore.messages, (o, key) => {
 							let item_class = '', author = '';
