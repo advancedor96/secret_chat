@@ -32,7 +32,7 @@
 	overflow: auto;
 }
 .messages > *{
-	font-size: 1.2rem;
+	font-size: 3rem;
 }
 .item{
 }
@@ -46,7 +46,7 @@
 	
 }
 :root{
-	font-size: calc(1vh + 1vw + 0.5vmin);
+	font-size: 1vh;
 }
 .time{
 	margin-left: 10px;
