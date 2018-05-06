@@ -4,6 +4,7 @@ import firebase from '../components/firebase';
 import moment from 'moment';
 
 var AppStore = observable({
+	username: '',
 	timer: 3,
 	firebaseRef: {},
 	messages: {},
@@ -23,7 +24,7 @@ AppStore.send = (msg)=>{
 	AppStore.firebaseRef.push({
 		author:'ding',
 		message:msg,
-		timestamp: moment().toString()
+		timestamp: moment().toISOString()
 	})
 };
 

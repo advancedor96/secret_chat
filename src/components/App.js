@@ -21,12 +21,18 @@ class App extends Component {
 		}
 
 	}
+	handleEnter = (e)=>{
+		if(e.keyCode === 13){
+			this.handleClickSend();
+		}
+	}
 	render() {
 		return (
 			<div>
 				<TextField
 					hintText="輸入訊息"
 					ref={(a)=>{this.TextField = a;}}
+					onKeyUp={this.handleEnter}
 				/>
 				<RaisedButton label="送出" onClick={this.handleClickSend}/>
 				<ul>
