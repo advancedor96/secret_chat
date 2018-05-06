@@ -71,7 +71,7 @@ class App extends Component {
 							<div className={item_class} key={key}>
 								<span className="author">{author}</span>
 								<span className="msg">{o.message}</span>
-								{/* <span className="time">{moment(o.timestamp).format("MM/DD HH:mm")}</span> */}
+								<span className="time">{moment(o.timestamp).format("MM/DD HH:mm")}</span>
 							</div>							
 
 						)
