@@ -25,12 +25,14 @@ class Login extends Component {
 	}
 	render() {
 		return (
-			<div>
+			<div className="login_container">
 				<TextField
 					hintText="輸入您的ID"
 					ref={(a)=>{this.id_input = a;}}
 					onKeyUp={this.handleEnter}
+					className="login_textField"
 				/>
+				<br />
 				<RaisedButton label="確定" onClick={this.handleClickSend}/>
 			</div>
 		);
