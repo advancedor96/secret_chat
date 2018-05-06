@@ -10,6 +10,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import Login from './Login';
 import swal from 'sweetalert';
+import AppBar from 'material-ui/AppBar';
 class App extends Component {
 	constructor(props) {
 		super(props);
@@ -17,46 +18,82 @@ class App extends Component {
 
 		if (typeof (Storage) !== "undefined") {
 		} else {
-			 swal("此瀏覽器不支援Web Storage，無法記錄您的帳號");
+			swal("此瀏覽器不支援Web Storage，無法記錄您的帳號");
 		}
 
 
 	}
-	handleClickSend = ()=>{
-		if(this.TextField.input.value.length !== 0){
+	handleClickSend = () => {
+		if (this.TextField.input.value.length !== 0) {
 			AppStore.send(this.TextField.input.value);
 			this.TextField.input.value = '';
 		}
 
 	}
-	handleEnter = (e)=>{
-		if(e.keyCode === 13){
+	handleEnter = (e) => {
+		if (e.keyCode === 13) {
 			this.handleClickSend();
 		}
 	}
-	handleLogout = ()=>{
+	handleLogout = () => {
 		AppStore.logout();
 	}
 	render() {
-		if(AppStore.username === ''){
+		if (AppStore.username === '') {
 			return <Login />
 		}
 		return (
 			<div>
-				<TextField
-					hintText="輸入訊息"
-					ref={(a)=>{this.TextField = a;}}
-					onKeyUp={this.handleEnter}
+				<AppBar
+					title="秘密聊天室"
+					iconClassNameRight="muidocs-icon-navigation-expand-more"
 				/>
-				<RaisedButton label="送出" onClick={this.handleClickSend}/>
-				<RaisedButton label="登出" onClick={this.handleLogout}/>
-				<ul>
-				{
-					_.map(AppStore.messages, (o, key)=>{
-						return <li key={key}>{o.author === AppStore.username? '我': o.author}：{o.message} <span>{moment(o.timestamp).format("YYYY-MM-DD HH:mm:ss")}</span></li>
-					})
-				}
-				</ul>
+				<RaisedButton label="登出" onClick={this.handleLogout} style={{display: 'none'}}/>
+				<div className="messages">
+					{/* <div className="item">
+						<span className="author">Toko</span>：
+						<span className="msg">我是toko</span>
+					</div>
+					<div className="item">
+						<span className="author">Toko</span>：
+						<span className="msg">我是toko 2</span>
+					</div>
+					<div className="my_item">
+						<span className="author">我</span>：
+						<span className="msg">他的的</span>
+					</div> */}
+					{
+						_.map(AppStore.messages, (o, key) => {
+							let item_class = '', author = '';
+							if(o.author === AppStore.username){
+								item_class = 'my_item';
+								author = '我';
+							}else{
+								item_class = 'item';
+								author = o.author;
+
+							}
+							return (
+							<div className={item_class} key={key}>
+								<span className="author">{author}</span>：
+								<span className="msg">{o.message}</span>
+								<span className="time">{moment(o.timestamp).format("MM/DD HH:mm")}</span>
+							</div>							
+
+						)
+						})
+					}
+				</div>
+
+				<div className="row">
+					<TextField
+						hintText="輸入訊息"
+						ref={(a) => { this.TextField = a; }}
+						onKeyUp={this.handleEnter}
+						className="msgInput"
+					/>
+					<RaisedButton label="送出" onClick={this.handleClickSend} />
+				</div>
 			</div>
 		);
 	}
