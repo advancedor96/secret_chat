@@ -9,7 +9,7 @@ import TextField from 'material-ui/TextField';
 import Login from './Login';
 import swal from 'sweetalert';
 import AppBar from 'material-ui/AppBar';
-
+import Gear from '../images/Gear.svg';
 class App extends Component {
 	constructor(props) {
 		super(props);
@@ -50,6 +50,13 @@ class App extends Component {
 				/>
 				<div className="messages">
 					{
+						AppStore.isLoading?
+						(
+							<div className="center_container">
+								<img src={Gear} alt="loading" />
+							</div>
+						):
+
 						_.map(AppStore.messages, (o, key) => {
 							let item_class = '', author = '';
 							if(o.author === AppStore.username){

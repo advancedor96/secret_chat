@@ -8,11 +8,13 @@ var AppStore = observable({
 	timer: 3,
 	firebaseRef: {},
 	messages: {},
+	isLoading: false,
 });
 
 window.AppStore = AppStore;
 
 AppStore.load = action(()=>{
+	AppStore.isLoading = true;
 	if(localStorage.username !== undefined){
 		AppStore.username = localStorage.username;
 		console.log('取得username:',AppStore.username);
@@ -20,6 +22,7 @@ AppStore.load = action(()=>{
 
 	AppStore.firebaseRef = firebase.database().ref('/messages');
 	AppStore.firebaseCallback = AppStore.firebaseRef.on('value', (snap) => {
+		AppStore.isLoading = false;
 		AppStore.messages = snap.val();
 	
 		setTimeout(() => {
