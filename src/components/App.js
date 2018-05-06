@@ -8,6 +8,7 @@ import './App.css';
 import _ from 'lodash';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
+import Login from './Login';
 
 class App extends Component {
 	constructor(props) {
@@ -27,6 +28,9 @@ class App extends Component {
 		}
 	}
 	render() {
+		if(AppStore.username === ''){
+			return <Login />
+		}
 		return (
 			<div>
 				<TextField
@@ -38,7 +42,7 @@ class App extends Component {
 				<ul>
 				{
 					_.map(AppStore.messages, (o, key)=>{
-						return <li key={key}>{o.author}：{o.message} <span>{moment(o.timestamp).format("YYYY-MM-DD HH:mm:ss")}</span></li>
+						return <li key={key}>{o.author === AppStore.username? '我': o.author}：{o.message} <span>{moment(o.timestamp).format("YYYY-MM-DD HH:mm:ss")}</span></li>
 					})
 				}
 				</ul>

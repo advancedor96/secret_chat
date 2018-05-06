@@ -18,11 +18,14 @@ AppStore.load = action(()=>{
 	});
 });
 
+AppStore.setUsername = action((newValue)=>{
+	AppStore.username = newValue;
+})
 
 AppStore.send = (msg)=>{
 	console.log('store 準備送資料到 server',);
 	AppStore.firebaseRef.push({
-		author:'ding',
+		author: AppStore.username,
 		message:msg,
 		timestamp: moment().toISOString()
 	})
