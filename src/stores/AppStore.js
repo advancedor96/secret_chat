@@ -9,8 +9,15 @@ var AppStore = observable({
 	firebaseRef: {},
 	messages: {},
 });
+
 window.AppStore = AppStore;
+
 AppStore.load = action(()=>{
+	if(localStorage.username !== undefined){
+		AppStore.username = localStorage.username;
+		console.log('取得username:',AppStore.username);
+	}
+
 	AppStore.firebaseRef = firebase.database().ref('/messages');
 	AppStore.firebaseCallback = AppStore.firebaseRef.on('value', (snap) => {
 		AppStore.messages = snap.val();
@@ -18,8 +25,14 @@ AppStore.load = action(()=>{
 	});
 });
 
+AppStore.logout = action(()=>{
+	localStorage.removeItem('username');
+	AppStore.username = '';
+})
+
 AppStore.setUsername = action((newValue)=>{
 	AppStore.username = newValue;
+	localStorage.username = newValue;
 })
 
 AppStore.send = (msg)=>{

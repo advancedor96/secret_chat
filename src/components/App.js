@@ -9,11 +9,18 @@ import _ from 'lodash';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import Login from './Login';
-
+import swal from 'sweetalert';
 class App extends Component {
 	constructor(props) {
 		super(props);
 		AppStore.load();
+
+		if (typeof (Storage) !== "undefined") {
+		} else {
+			 swal("此瀏覽器不支援Web Storage，無法記錄您的帳號");
+		}
+
+
 	}
 	handleClickSend = ()=>{
 		if(this.TextField.input.value.length !== 0){
@@ -27,6 +34,9 @@ class App extends Component {
 			this.handleClickSend();
 		}
 	}
+	handleLogout = ()=>{
+		AppStore.logout();
+	}
 	render() {
 		if(AppStore.username === ''){
 			return <Login />
@@ -39,6 +49,7 @@ class App extends Component {
 					onKeyUp={this.handleEnter}
 				/>
 				<RaisedButton label="送出" onClick={this.handleClickSend}/>
+				<RaisedButton label="登出" onClick={this.handleLogout}/>
 				<ul>
 				{
 					_.map(AppStore.messages, (o, key)=>{
