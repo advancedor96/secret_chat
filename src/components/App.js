@@ -45,45 +45,54 @@ class App extends Component {
 	componentDidMount(){
 	}
 
+	componentDidUpdate(prevProps, prevState){
+		// alert('aaa');
+
+		// /* 讀到資料後，要改 view 請到 DOM 改 */
+		// setTimeout(() => {
+		// 	document.querySelector('.messages').scrollTop = document.querySelector('.messages').scrollHeight - document.querySelector('.messages').clientHeight;
+		// }, 300);
+	}
+
 	render() {
 		if (AppStore.username === '') {
 			return <Login />
 		}
 		return (
-			<React.Fragment>
+			<div className="page2_container">
 				<AppBar
 					className="AppBar"
 					title="秘密聊天室"
 					iconElementLeft={<img src={Logout} alt="登出" onClick={this.handleLogout}/>}
 				/>
-				<div className="messages" id="style-15" style={{backgroundImage: `url(${Space})` }}>
+				<div className="messages_container" id="style-15" style={{backgroundImage: `url(${Space})` }}>
 					{
-						AppStore.isLoading?
-						(
-							<div className="center_container">
-								<img src={Gear} alt="loading" />
-							</div>
-						):
+							AppStore.isLoading?
+							(
+								<div className="center_container">
+									<img src={Gear} alt="loading" />
+								</div>
+							):
 
-						_.map(AppStore.messages, (o, key) => {
-							let item_class = '', author = '';
-							if(o.author === AppStore.username){
-								item_class = 'my_speak';
-								author = '';
-							}else{
-								item_class = 'other_speak';
-								author = o.author;
+							_.map(AppStore.messages, (o, key) => {
+								let item_class = '', author = '';
+								if(o.author === AppStore.username){
+									item_class = 'my_speak';
+									author = o.author;
+								}else{
+									item_class = 'other_speak';
+									author = o.author;
 
-							}
-							return (
-							<div className={item_class} key={key}>
-								<div className="author">{author}</div>
-								<span className="msg">{o.message}</span>
-								{/* <span className="time">{moment(o.timestamp).format("MM/DD HH:mm")}</span> */}
-							</div>							
+								}
+								return (
+								<div className={item_class} key={key}>
+									<div className="author">{author}</div>
+									<span className="msg">{o.message}</span>
+									{/* <span className="time">{moment(o.timestamp).format("MM/DD HH:mm")}</span> */}
+								</div>							
 
-						)
-						})
+							)
+							})
 					}
 				</div>
 
@@ -103,7 +112,7 @@ class App extends Component {
 						<img src={SendBtn} alt='送出' />
 					</button>
 				</div>
-			</React.Fragment>
+			</div>
 		);
 	}
 }

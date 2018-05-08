@@ -33,7 +33,7 @@ class Login extends Component {
 				<TextField
 					autoFocus={true}
 					hintText="輸入暱稱"
-					hintStyle={{color: 'white', fontSize: '20px'}}
+					hintStyle={{color: 'rgba(255, 255, 255, 0.7)', fontSize: '20px'}}
 					inputStyle={{color: 'white', fontSize: '20px'}}
 					ref={(a)=>{this.id_input = a;}}
 					onKeyUp={this.handleEnter}
