@@ -17,7 +17,6 @@ import SendBtn from '../images/send.png';
 class App extends Component {
 	constructor(props) {
 		super(props);
-		AppStore.load();
 
 		if (typeof (Storage) !== "undefined") {
 		} else {
@@ -42,6 +41,10 @@ class App extends Component {
 	handleLogout = () => {
 		AppStore.logout();
 	}
+
+	componentDidMount(){
+	}
+
 	render() {
 		if (AppStore.username === '') {
 			return <Login />
@@ -53,7 +56,7 @@ class App extends Component {
 					title="秘密聊天室"
 					iconElementLeft={<img src={Logout} alt="登出" onClick={this.handleLogout}/>}
 				/>
-				<div className="messages" style={{backgroundImage: `url(${Space})` }}>
+				<div className="messages" id="style-15" style={{backgroundImage: `url(${Space})` }}>
 					{
 						AppStore.isLoading?
 						(
@@ -86,6 +89,7 @@ class App extends Component {
 
 				<div className="row bottom_row">
 					<input type='text'
+						autoFocus={true}
 						placeholder="輸入訊息"
 						ref={(a) => { this.TextField = a; }}
 						onKeyUp={this.handleEnter}

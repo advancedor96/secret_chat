@@ -8,6 +8,7 @@ import _ from 'lodash';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import Space from '../images/space.png';
+import swal from 'sweetalert';
 
 class Login extends Component {
 	constructor(props) {
@@ -17,6 +18,8 @@ class Login extends Component {
 	handleClickSend = ()=>{
 		if(this.id_input.input.value.length !== 0){
 			AppStore.setUsername(this.id_input.input.value);
+		}else{
+			swal('不給進入', '請輸入名字', 'error');
 		}
 	}
 	handleEnter = (e)=>{
@@ -28,6 +31,7 @@ class Login extends Component {
 		return (
 			<div className="login_container" style={{backgroundImage: `url(${Space})` }}>
 				<TextField
+					autoFocus={true}
 					hintText="輸入暱稱"
 					hintStyle={{color: 'white', fontSize: '20px'}}
 					inputStyle={{color: 'white', fontSize: '20px'}}
@@ -38,7 +42,6 @@ class Login extends Component {
 				/>
 				<br />
 				<button className="loginBtn" onClick={this.handleClickSend}>進入</button>
-				{/* <RaisedButton label="進入" onClick={this.handleClickSend}/> */}
 			</div>
 		);
 	}

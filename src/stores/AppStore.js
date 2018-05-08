@@ -26,9 +26,9 @@ AppStore.load = action(()=>{
 		AppStore.messages = snap.val();
 	
 		/* 讀到資料後，要改 view 請到 DOM 改 */
-		// setTimeout(() => {
-		// 	document.querySelector('.messages').scrollTop = document.querySelector('.messages').scrollHeight - document.querySelector('.messages').clientHeight;
-		// }, 300);
+		setTimeout(() => {
+			document.querySelector('.messages').scrollTop = document.querySelector('.messages').scrollHeight - document.querySelector('.messages').clientHeight;
+		}, 300);
 	});
 });
 
@@ -40,6 +40,9 @@ AppStore.logout = action(()=>{
 AppStore.setUsername = action((newValue)=>{
 	AppStore.username = newValue;
 	localStorage.username = newValue;
+
+
+	AppStore.load();
 })
 
 AppStore.send = (msg)=>{

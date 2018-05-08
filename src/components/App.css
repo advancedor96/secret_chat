@@ -33,12 +33,11 @@
 .login_container{
 	background-color: #ccc;
    min-width: 300px;
-   max-width: 90vw;
+   max-width: 100vw;
 
    min-height: 100vh;
    max-height: 100vh;
    margin: 0 auto;
-	/* padding-top: 35px; */
 	text-align: center;
 }
 
@@ -61,6 +60,34 @@
 	font-size: 20px;
 	padding: 0 7px;
 }
+
+/* #style-15::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.1);
+	background-color: #69dfda2e;
+	border-radius: 10px;
+} */
+
+#style-15::-webkit-scrollbar
+{
+	width: 15px;
+	background-color: #69dfda2e;
+	/* background-color: #F5F5F5; */
+}
+
+#style-15::-webkit-scrollbar-thumb
+{
+	border-radius: 7px;
+	background-color: #FFF;
+	background-image: -webkit-gradient(linear,
+									   40% 0%,
+									   75% 84%,
+									   from(#4D9C41),
+									   to(#19911D),
+									   color-stop(.6,#54DE5D))
+}
+
+
 
 .msg{
 	padding: 10px 14px;
