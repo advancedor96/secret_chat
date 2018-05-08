@@ -36,13 +36,11 @@
 }
 .row{
 	display: flex;
+	align-items: center;
 	position: absolute;
 	width: 100%;
 	bottom: 0;
 	padding: 0 7px;
-}
-.msgInput{
-	width: 100% !important;
 }
 .messages{
 	min-height: calc( 100vh - 115px );
@@ -70,15 +68,18 @@
 .other_speak > .msg{
 	background-color: #69DEDA;
 	color: black;
+	word-wrap: break-word;
 }
 .my_speak{
-	position: absolute;
-   right: 7px;
+	text-align: right;
+	/* position: absolute; */
+   /* right: 7px; */
 	margin-bottom: 15px;
 }
 .my_speak > .msg{
 	background-color: #77EF71;
 	color: black;
+	word-wrap: break-word;
 }
 .author{
 	
@@ -96,4 +97,28 @@
     justify-content: center;
     align-items: center;
     min-height: inherit;
+}
+
+.bottom_row{
+	background-color: black;
+	height: 50px;
+}
+
+.bottom_row > input{
+	width: 100% !important;
+	height: 70%;
+	background-color: black;
+	color: white;
+	border: 1px solid white;
+	border-radius: 21px;
+	padding-left: 17px;
+	font-size: 20px;
+	padding-right: 20px;
+}
+.bottom_row > button {
+	background-color: transparent;
+	border: none;
+}
+.bottom_row> button > img{
+	width: 45px;
 }

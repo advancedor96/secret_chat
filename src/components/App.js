@@ -12,6 +12,8 @@ import AppBar from 'material-ui/AppBar';
 import Gear from '../images/Gear.svg';
 import Logout from '../images/logout.png';
 import Space from '../images/space.png';
+import SendBtn from '../images/send.png';
+
 class App extends Component {
 	constructor(props) {
 		super(props);
@@ -25,9 +27,9 @@ class App extends Component {
 
 	}
 	handleClickSend = () => {
-		if (this.TextField.input.value.length !== 0) {
-			AppStore.send(this.TextField.input.value);
-			this.TextField.input.value = '';
+		if (this.TextField.value.length !== 0) {
+			AppStore.send(this.TextField.value);
+			this.TextField.value = '';
 		}
 
 
@@ -82,14 +84,20 @@ class App extends Component {
 					}
 				</div>
 
-				<div className="row">
-					<TextField
+				<div className="row bottom_row">
+					<input type='text'
+						placeholder="輸入訊息"
+						ref={(a) => { this.TextField = a; }}
+						onKeyUp={this.handleEnter}
+					/>
+					{/* <TextField
 						hintText="輸入訊息"
 						ref={(a) => { this.TextField = a; }}
 						onKeyUp={this.handleEnter}
-						className="msgInput"
-					/>
-					<RaisedButton label="送出" onClick={this.handleClickSend} />
+					/> */}
+					<button onClick={this.handleClickSend}>
+						<img src={SendBtn} alt='送出' />
+					</button>
 				</div>
 			</React.Fragment>
 		);
