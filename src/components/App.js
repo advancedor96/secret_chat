@@ -10,6 +10,7 @@ import Login from './Login';
 import swal from 'sweetalert';
 import AppBar from 'material-ui/AppBar';
 import Gear from '../images/Gear.svg';
+import Logout from '../images/logout.png';
 class App extends Component {
 	constructor(props) {
 		super(props);
@@ -45,8 +46,10 @@ class App extends Component {
 		return (
 			<React.Fragment>
 				<AppBar
+					className="AppBar"
 					title="秘密聊天室"
-					iconElementRight={<RaisedButton label="登出" onClick={this.handleLogout}/>}
+					iconElementLeft={<img src={Logout} alt="登出" onClick={this.handleLogout}/>}
+					// style={{backgroundColor: 'gray'}}
 				/>
 				<div className="messages">
 					{

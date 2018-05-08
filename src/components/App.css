@@ -1,6 +1,17 @@
 .App {
   text-align: center;
 }
+.AppBar > div >img{
+	width:35px;
+	cursor: pointer;
+}
+.AppBar {
+	text-align: center;
+	background-color: black !important;
+	align-items: center;
+	border-bottom: 2px solid white;
+	box-shadow: none;
+}
 #root{
 	height: 100vh;
 }
