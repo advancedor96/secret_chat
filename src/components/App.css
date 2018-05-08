@@ -1,3 +1,7 @@
+:root{
+	font-size: 1vh;
+}
+
 .App {
   text-align: center;
 }
@@ -9,7 +13,7 @@
 	text-align: center;
 	background-color: black !important;
 	align-items: center;
-	border-bottom: 2px solid white;
+	border-bottom: 1px solid white;
 	box-shadow: none;
 }
 #root{
@@ -43,26 +47,41 @@
 .messages{
 	min-height: calc( 100vh - 115px );
 	max-height: calc( 100vh - 115px );
-	background-color: beige;
 	overflow-y: scroll;
-}
-.messages{
+	background-size: contain;
 	font-size: 20px;
 	padding: 0 7px;
 }
-.item{
+
+.msg{
+	padding: 10px 14px;
+	border-radius: 10px;
+
+	display: inline-block;
+	max-width: 210px;
+	width: auto;
 }
-.my_item{
-	text-align: right;
+.other_speak{
+	margin-bottom: 15px;
+}
+.other_speak > .author{
+	color: #69DEDA;
+}
+.other_speak > .msg{
+	background-color: #69DEDA;
+	color: black;
+}
+.my_speak{
+	position: absolute;
+   right: 7px;
+	margin-bottom: 15px;
+}
+.my_speak > .msg{
+	background-color: #77EF71;
+	color: black;
 }
 .author{
 	
-}
-.msg{
-	
-}
-:root{
-	font-size: 1vh;
 }
 .time{
 	margin-left: 10px;
@@ -71,7 +90,8 @@
 *{
 	font-size: inherit;
 }
-.center_container{
+/* 顯示 loading */
+.center_container{ 
 	display: flex;
     justify-content: center;
     align-items: center;

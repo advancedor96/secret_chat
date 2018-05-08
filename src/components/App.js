@@ -11,6 +11,7 @@ import swal from 'sweetalert';
 import AppBar from 'material-ui/AppBar';
 import Gear from '../images/Gear.svg';
 import Logout from '../images/logout.png';
+import Space from '../images/space.png';
 class App extends Component {
 	constructor(props) {
 		super(props);
@@ -49,9 +50,8 @@ class App extends Component {
 					className="AppBar"
 					title="秘密聊天室"
 					iconElementLeft={<img src={Logout} alt="登出" onClick={this.handleLogout}/>}
-					// style={{backgroundColor: 'gray'}}
 				/>
-				<div className="messages">
+				<div className="messages" style={{backgroundImage: `url(${Space})` }}>
 					{
 						AppStore.isLoading?
 						(
@@ -63,18 +63,18 @@ class App extends Component {
 						_.map(AppStore.messages, (o, key) => {
 							let item_class = '', author = '';
 							if(o.author === AppStore.username){
-								item_class = 'my_item';
+								item_class = 'my_speak';
 								author = '';
 							}else{
-								item_class = 'item';
-								author = o.author + '：';
+								item_class = 'other_speak';
+								author = o.author;
 
 							}
 							return (
 							<div className={item_class} key={key}>
-								<span className="author">{author}</span>
+								<div className="author">{author}</div>
 								<span className="msg">{o.message}</span>
-								<span className="time">{moment(o.timestamp).format("MM/DD HH:mm")}</span>
+								{/* <span className="time">{moment(o.timestamp).format("MM/DD HH:mm")}</span> */}
 							</div>							
 
 						)
