@@ -7,6 +7,7 @@ import './App.css';
 import _ from 'lodash';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
+import Space from '../images/space.png';
 
 class Login extends Component {
 	constructor(props) {
@@ -25,15 +26,19 @@ class Login extends Component {
 	}
 	render() {
 		return (
-			<div className="login_container">
+			<div className="login_container" style={{backgroundImage: `url(${Space})` }}>
 				<TextField
-					hintText="輸入您的ID"
+					hintText="輸入暱稱"
+					hintStyle={{color: 'white', fontSize: '20px'}}
+					inputStyle={{color: 'white', fontSize: '20px'}}
 					ref={(a)=>{this.id_input = a;}}
 					onKeyUp={this.handleEnter}
 					className="login_textField"
+					underlineFocusStyle={{borderBottom: ' 2px solid #77EF71 '}}
 				/>
 				<br />
-				<RaisedButton label="確定" onClick={this.handleClickSend}/>
+				<button className="loginBtn" onClick={this.handleClickSend}>進入</button>
+				{/* <RaisedButton label="進入" onClick={this.handleClickSend}/> */}
 			</div>
 		);
 	}

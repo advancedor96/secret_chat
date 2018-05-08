@@ -25,9 +25,10 @@ AppStore.load = action(()=>{
 		AppStore.isLoading = false;
 		AppStore.messages = snap.val();
 	
-		setTimeout(() => {
-			document.querySelector('.messages').scrollTop = document.querySelector('.messages').scrollHeight - document.querySelector('.messages').clientHeight;
-		}, 300);
+		/* 讀到資料後，要改 view 請到 DOM 改 */
+		// setTimeout(() => {
+		// 	document.querySelector('.messages').scrollTop = document.querySelector('.messages').scrollHeight - document.querySelector('.messages').clientHeight;
+		// }, 300);
 	});
 });
 
