@@ -7,30 +7,39 @@ var AppStore = observable({
 	username: '',
 	timer: 3,
 	firebaseRef: {},
+	firebaseRefGetLast: {},
 	messages: {},
 	isLoading: false,
+	isScrollingDown: false,
 });
 
 window.AppStore = AppStore;
 
 AppStore.load = action(()=>{
 	AppStore.isLoading = true;
-	if(localStorage.username !== undefined){
-		AppStore.username = localStorage.username;
-		console.log('取得username:',AppStore.username);
-	}
 
-	AppStore.firebaseRef = firebase.database().ref('/messages');
-	AppStore.firebaseCallback = AppStore.firebaseRef.on('value', (snap) => {
+
+	AppStore.firebaseRefGetLast = firebase.database().ref('/messages').limitToLast(50);;
+	AppStore.firebaseCallback = AppStore.firebaseRefGetLast.on('value', (snap) => {
+		// console.log('讀到:',snap.val());
 		AppStore.isLoading = false;
 		AppStore.messages = snap.val();
+		AppStore.isScrollingDown = true;
+		// AppStore.messages[snap.key] = snap.val();
 	
 		/* 讀到資料後，要改 view 請到 DOM 改 */
-		setTimeout(() => {
-			document.querySelector('.messages').scrollTop = document.querySelector('.messages').scrollHeight - document.querySelector('.messages').clientHeight;
-		}, 300);
+			setTimeout(() => {
+				document.querySelector('.messages_container').scrollTop = document.querySelector('.messages_container').scrollHeight - document.querySelector('.messages_container').clientHeight;
+				
+			}, 200);
 	});
+
+	AppStore.firebaseRef = firebase.database().ref('/messages');
 });
+
+AppStore.setIsScrollingDown = action((new_value)=>{
+	AppStore.isScrollingDown = new_value;
+})
 
 AppStore.logout = action(()=>{
 	localStorage.removeItem('username');

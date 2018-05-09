@@ -13,6 +13,7 @@ import Gear from '../images/Gear.svg';
 import Logout from '../images/logout.png';
 import Space from '../images/space.png';
 import SendBtn from '../images/send.png';
+import { apps } from 'firebase';
 
 class App extends Component {
 	constructor(props) {
@@ -23,7 +24,11 @@ class App extends Component {
 			swal("此瀏覽器不支援Web Storage，無法記錄您的帳號");
 		}
 
-
+		if(localStorage.username !== undefined){
+			AppStore.username = localStorage.username;
+			console.log('取得username:',AppStore.username);
+			AppStore.load();
+		}
 	}
 	handleClickSend = () => {
 		if (this.TextField.value.length !== 0) {
@@ -42,16 +47,9 @@ class App extends Component {
 		AppStore.logout();
 	}
 
-	componentDidMount(){
-	}
 
 	componentDidUpdate(prevProps, prevState){
-		// alert('aaa');
 
-		// /* 讀到資料後，要改 view 請到 DOM 改 */
-		// setTimeout(() => {
-		// 	document.querySelector('.messages').scrollTop = document.querySelector('.messages').scrollHeight - document.querySelector('.messages').clientHeight;
-		// }, 300);
 	}
 
 	render() {
@@ -103,11 +101,7 @@ class App extends Component {
 						ref={(a) => { this.TextField = a; }}
 						onKeyUp={this.handleEnter}
 					/>
-					{/* <TextField
-						hintText="輸入訊息"
-						ref={(a) => { this.TextField = a; }}
-						onKeyUp={this.handleEnter}
-					/> */}
+
 					<button onClick={this.handleClickSend}>
 						<img src={SendBtn} alt='送出' />
 					</button>
